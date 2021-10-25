@@ -6,13 +6,12 @@ content to a user. It can manage multiple RSS feeds, check its current
 feeds, and add or remove by command-line interaction.
 '''
 
-from subprocess import check_call
-from sys import executable
-
 try:
     import feedparser
-except:
+except ImportError:
     # install feedparser in case it is not previously installed
+    from subprocess import check_call
+    from sys import executable
     check_call([executable, '-m', 'pip', 'install', 'feedparser'])
     import feedparser
 
@@ -132,7 +131,7 @@ class RssReader:
 def main() -> None:
 
     rss_reader = RssReader()
-    print('Welcome to RSS reader!\n')
+    print('\nWelcome to RSS reader!\n')
 
 
     # Keep reading commands from the terminal input until the user exits.
